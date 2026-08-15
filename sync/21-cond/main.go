@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 var sharedRsc = make(map[string]interface{})
@@ -18,7 +17,6 @@ func main() {
 		c.L.Lock()
 		for len(sharedRsc) == 0 {
 			c.Wait()
-			time.Sleep(1 * time.Millisecond)
 		}
 		c.L.Unlock()
 
